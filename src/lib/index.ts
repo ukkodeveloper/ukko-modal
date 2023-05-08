@@ -1,4 +1,4 @@
 import './styles.css';
-import MyModal from './MyModal';
+import Modal from './Modal';
 
-export { MyModal };
+export { Modal as MyModal };

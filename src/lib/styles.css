@@ -1,28 +1,54 @@
-.modal-overlay {
+body:has(.modal) {
+  overflow: hidden;
+}
+
+.modal-backdrop {
   position: fixed;
   top: 0;
+  right: 0;
+  bottom: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
+
+  background: rgba(0, 0, 0, 0.35);
 }
 
 .modal {
   position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: white;
-  border-radius: 10px;
-  padding: 20px;
-  width: 500px; /* 수정 */
-  height: 500px; /* 수정 */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 32px 16px;
+  box-sizing: border-box;
+  border: 0;
+  border-radius: 8px 8px 0px 0px;
+  background: white;
+
+  animation: slide-up 0.5s ease-out forwards;
+  transition: 'opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1)';
+}
+
+.modal.closing {
+  animation: slide-down 0.5s ease-out forwards;
+}
+
+@keyframes slide-up {
+  0% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-down {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
 }

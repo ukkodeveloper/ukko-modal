@@ -1,70 +1,51 @@
-# Getting Started with Create React App
+# UkkoModal 모달 라이브러리
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+매우 간단한 모달을 구현할 수 있는 라이브러리입니다. 아래에서 올라오는 모달입니다. 내용물은 직접 채우셔야합니다.
 
-## Available Scripts
+## 설치 방법
 
-In the project directory, you can run:
+`npm install ukko-modal`
 
-### `npm start`
+## 사용 방법
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### UkkoModal 컴포넌트 불러오기
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+`import { Modal } from 'ukko-modal';`
 
-### `npm test`
+### UkkoModal 사용하기
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```javascript
+<Modal trigger={<button>모달 열기</button>} isShow={true}>
+  <h2>제목</h2>
+  <p>내용</p>
+</Modal>
+```
 
-### `npm run build`
+- ukko modal은 `document.body`아래에 모달이 생성됩니다.
+- backdrop을 클릭 시 모달이 닫힙니다.
+- 다른 요소에 해당 modal 닫으려는 핸들러를 추가하고 싶으면 모달 내부 요소에 `data-modal="close"` 속성을 추가해주세요. 해당 요소를 누르면 모달이 닫힐 겁니다.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Props
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- trigger: 모달을 열기 위한 요소를 설정할 수 있습니다. 없어도 됩니다.
+- isShow: 렌더링 시에 바로 모달을 띄울 것인지 정할 수 있습니다. `true` 일 경우 렌더링 시에 모달이 띄워집니다. 기본값은 `false`입니다.
+- children: 모달 내부에 들어갈 컨텐츠입니다. 없어도 되지만 모달의 내용을 채워야 의미가 있을 겁니다.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Props 예시
 
-### `npm run eject`
+```javascript
+import { Modal } from 'ukko-modal';
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+function App() {
+  return (
+    <div>
+      <MyModal trigger={<button>모달이 열립니다.</button>}>
+        <h2>제목</h2>
+        <p>내용</p>
+      </MyModal>
+    </div>
+  );
+}
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+export default App;
+```
